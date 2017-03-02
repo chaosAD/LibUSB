@@ -70,6 +70,27 @@ usb.core.util.get_string(dev, 1)             # Returns 'STMicroelectronics'
 usb.core.util.get_string(dev, 2)             # Returns 'STM32 STLink'
 usb.core.util.get_string(dev, 4)             # Returns 'ST Link'
 ```
+We can show all USB devices:
+```
+usb.core.show_devices()
+```
+When there are multiple ST-Link dongles, pyusb is able to list each one of them.
+They are differentiated by `bus` and `address`:
+```
+usb.core.show_devices(idVendor=0x483, idProduct=0x3748)
+```
+If the details of the devices are also needed, type:
+```
+usb.core.show_devices(verbose=True, idVendor=0x483, idProduct=0x3748)
+```
+The following code snippet shows another way to find all devices on the USB bus
+with the same `idVendor` and `idProduct` (identical devices):
+```
+devices = usb.core.find(find_all = True, idVendor=0x483, idProduct=0x3748)
+for device in devices:
+	print("device=%x:%x, bus=%d, address=%d" % \
+	      (device.idVendor, device.idProduct, device.bus, device.address))
+```
 For further examples, refer to [1].
 
 Source Code
