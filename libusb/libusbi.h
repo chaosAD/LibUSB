@@ -28,6 +28,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <time.h>
+#include <unistd.h>
 #include <stdarg.h>
 #ifdef HAVE_POLL_H
 #include <poll.h>
