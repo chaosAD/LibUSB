@@ -91,6 +91,17 @@ for device in devices:
 	print("device=%x:%x, bus=%d, address=%d" % \
 	      (device.idVendor, device.idProduct, device.bus, device.address))
 ```
+The following shows how to retrieve the serial number of the ST-Link dongles:
+```
+devs = usb.core.find(find_all=True, idVendor=0x0483, idProduct=0x3748)
+for dev in devs:
+	print("device=%x:%x on " % (dev.idVendor, dev.idProduct), end='')
+	print("bus:addr=%x:%x, serial-num=" % (dev.bus, dev.address), end='')
+	for b in dev.serial_number.encode():
+		print("%x" % b, end='')
+	print()
+```
+However, the serial number retrieved seems to be incorrect at certain locations.
 For further examples, refer to [1].
 
 Source Code
