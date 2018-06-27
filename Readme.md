@@ -62,7 +62,8 @@ ep = usb.util.find_descriptor(                # Get the 1st OUT endpoint descrip
   custom_match = \
   lambda e: \
       usb.util.endpoint_direction(e.bEndpointAddress) == \
-      usb.util.ENDPOINT_OUT) print(ep)       # Print the OUT end-point
+      usb.util.ENDPOINT_OUT) 
+print(ep)       			     # Print the OUT end-point
 print(intf)                                  # Print the interface
 print(cfg)                                   # Print the configuration
 
